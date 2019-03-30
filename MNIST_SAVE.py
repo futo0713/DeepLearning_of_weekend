@@ -8,7 +8,7 @@ dl_list = [
     't10k-labels-idx1-ubyte.gz'
 ]
 
-dataset_dir = '/Users/tsutsumifutoshishi/Desktop/MNIST_test'
+dataset_dir = '/Users/FUTOSHI/Desktop/MNIST_test'
 
 #train_img
 file_path = dataset_dir + '/' + dl_list[0]
