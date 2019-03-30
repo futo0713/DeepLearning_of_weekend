@@ -14,7 +14,7 @@ dataset_dir = '/Users/tsutsumifutoshishi/Desktop/MNIST_test'
 file_path = dataset_dir + '/' + dl_list[0]
 with gzip.open(file_path, 'rb') as f:
     data = np.frombuffer(f.read(), np.uint8, offset=16)
-train_img = data.reshape(784,60000)
+train_img = data.reshape(-1,784)
 
 #train_label
 file_path = dataset_dir + '/' + dl_list[1]
@@ -26,7 +26,7 @@ train_label = data
 file_path = dataset_dir + '/' + dl_list[2]
 with gzip.open(file_path, 'rb') as f:
     data = np.frombuffer(f.read(), np.uint8, offset=16)
-test_img = data.reshape(784,10000)
+test_img = data.reshape(-1,784)
 
 #test_label
 file_path = dataset_dir + '/' + dl_list[3]
