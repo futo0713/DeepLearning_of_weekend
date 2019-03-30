@@ -1,0 +1,45 @@
+import gzip
+import numpy as np
+
+dl_list = [
+    'train-images-idx3-ubyte.gz',
+    'train-labels-idx1-ubyte.gz',
+    't10k-images-idx3-ubyte.gz',
+    't10k-labels-idx1-ubyte.gz'
+]
+
+dataset_dir = '/Users/tsutsumifutoshishi/Desktop/MNIST_test'
+
+#train_img
+file_path = dataset_dir + '/' + dl_list[0]
+with gzip.open(file_path, 'rb') as f:
+    data = np.frombuffer(f.read(), np.uint8, offset=16)
+train_img = data.reshape(784,60000)
+
+#train_label
+file_path = dataset_dir + '/' + dl_list[1]
+with gzip.open(file_path, 'rb') as f:
+    data = np.frombuffer(f.read(), np.uint8, offset=8)
+train_label = data
+
+#test_img
+file_path = dataset_dir + '/' + dl_list[2]
+with gzip.open(file_path, 'rb') as f:
+    data = np.frombuffer(f.read(), np.uint8, offset=16)
+test_img = data.reshape(784,10000)
+
+#test_label
+file_path = dataset_dir + '/' + dl_list[3]
+with gzip.open(file_path, 'rb') as f:
+    data = np.frombuffer(f.read(), np.uint8, offset=8)
+test_label = data
+
+dataset = [train_img,train_label,test_img,test_label]
+
+
+import pickle
+
+save_file = dataset_dir + '/mnist.pkl'
+
+with open(save_file, 'wb') as f:
+    pickle.dump(dataset, f) 
