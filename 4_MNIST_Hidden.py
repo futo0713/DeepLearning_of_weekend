@@ -2,7 +2,7 @@
 #load dataset
 import pickle
 
-save_file = '/Users/FUTOSHI/Desktop/MNIST_test/mnist.pkl'
+save_file = '/Users/tsutsumifutoshishi/Desktop/MNIST_test/mnist.pkl'
 
 with open(save_file, 'rb') as f:
     dataset = pickle.load(f)
@@ -124,9 +124,9 @@ plt.show()
 
 parameters = [Wh,Bh,Wo,Bo]
 
-dataset_dir = '/Users/FUTOSHI/Desktop/MNIST_test'
+dataset_dir = '/Users/tsutsumifutoshishi/Desktop/MNIST_test'
 
-save_file = dataset_dir + '/perceptron.pkl'
+save_file = dataset_dir + '/hidden.pkl'
 
 with open(save_file, 'wb') as f:
     pickle.dump(parameters, f) 
