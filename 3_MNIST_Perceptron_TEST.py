@@ -10,12 +10,12 @@ with open(save_file, 'rb') as f:
 train_img,train_label,test_img,test_label = dataset
 
 
-save_file = '/Users/FUTOSHI/Desktop/MNIST_test/hidden.pkl'
+save_file = '/Users/FUTOSHI/Desktop/MNIST_test/perceptron.pkl'
 
 with open(save_file, 'rb') as f:
     parameters = pickle.load(f)
 
-Wh,Bh,Wo,Bo = parameters
+W, B = parameters
 
 #-----------------------------------------------------
 #library import
@@ -33,9 +33,6 @@ T_test = np.eye(10)[list(map(int,test_label))]
 
 #-----------------------------------------------------
 #function
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
-
 def softmax(z):
     return np.exp(z) / np.sum(np.exp(z), axis=1, keepdims=True)
 
@@ -52,8 +49,7 @@ num_of_test = X_test.shape[0]
 for i in range(num_of_test):
     #-----------------------------------------------------
     #forward prop
-    H = sigmoid(np.dot(X_test[i],Wh)+Bh)
-    Y = softmax(np.dot(H, Wo)+Bo)
+    Y = softmax(np.dot(X_test[i], W)+B)
 
     #set accuracy
     Y_accuracy = np.argmax(Y)
