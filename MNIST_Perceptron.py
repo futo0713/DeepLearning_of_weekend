@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 
 #minist_load
-save_file = '/Users/tsutsumifutoshishi/Desktop/MNIST_test/mnist.pkl'
+save_file = '/Users/FUTOSHI/Desktop/MNIST_test/mnist.pkl'
 X_train,T_train,X_test,T_test = function.mnist(save_file)
 
 # function.show(X_train,T_train,0)
