@@ -23,15 +23,6 @@ def mnist(PATH):
 
     return [X_train,T_train,X_test,T_test]
 
-def show(img,label,i):
-    img = np.reshape(img[i],(28,28))
-
-    plt.figure()
-    plt.imshow(img, cmap='gray_r')
-    plt.show()
-
-    print(label[i])
-
 #-----------------------------------------------------
 #math 
 def sigmoid(x):
@@ -41,8 +32,8 @@ def softmax(z):
     return np.exp(z) / np.sum(np.exp(z), axis=1, keepdims=True)
 
 def loss(y, t):
-    delta = 1e-7
-    return -np.sum(np.multiply(t, np.log(y+delta)) + np.multiply((1 - t), np.log(1 - y+delta)))
+    minute = 1e-7
+    return -np.sum(np.multiply(t, np.log(y+minute)) + np.multiply((1 - t), np.log(1 - y+minute)))
 
 #-----------------------------------------------------
 #batch
@@ -103,6 +94,7 @@ def plot_acc(accuracy_save):
     # plt.ylim(0, 100)
     plt.grid(True)
     plt.plot(accuracy_save, color='blue')
+    # plt.savefig('/Users/FUTOSHI/Desktop/cnn_test/plot(accuracy)')
     plt.show()
 
 def plot_loss(E_save):
@@ -114,4 +106,45 @@ def plot_loss(E_save):
     # plt.ylim(0, 100)
     plt.grid(True)
     plt.plot(E_save, color='blue')
+    # plt.savefig('/Users/FUTOSHI/Desktop/cnn_test/plot(error)')
     plt.show()
+    
+#-----------------------------------------------------
+#img confirm
+def show(img,label,i):
+    img = np.reshape(img[i],(28,28))
+
+    plt.figure()
+    plt.imshow(img, cmap='gray_r')
+    plt.show()
+
+    print(label[i])
+
+def show_img(IMG,T_batch,i):
+    #Error code
+    if i <= IMG.shape[0]:
+        pass
+    else:
+        print("★ Error(show_img):バッチ数よりも大きな値を入力しています")
+        sys.exit()
+
+    for i in range(i):
+        L = int(np.sqrt(IMG.shape[1]))
+        img = np.reshape(IMG[i],(L,L))
+
+        plt.figure()
+        plt.imshow(img, cmap='gray_r')
+        plt.show()
+
+        print(T_batch[i])
+
+def show_progress(i,num):
+    if i%(num/10) == 0:
+        print('現在{}%'.format(100*i/num))
+    else:
+        pass
+
+def save(parameter,name,path):
+    save_file = path + '/{}.pkl'.format(name)
+    with open(save_file, 'wb') as f:
+        pickle.dump(parameter, f) 
